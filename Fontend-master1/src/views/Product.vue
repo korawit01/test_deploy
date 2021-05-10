@@ -378,7 +378,7 @@ export default {
         const res = await fetch(this.url + "/Product/multi", {
           method: 'POST',
           body: formData
-        },{mode: "no-cors"})
+        })
         const resdata = await res.json()
         this.formResults = [...this.formResults, resdata]
       }
@@ -390,7 +390,7 @@ export default {
     //Get
     async getFormResults() {
       try {
-        const res = await fetch(this.url + "/Product",{mode: "no-cors"} )
+        const res = await fetch(this.url + "/Product" )
         const resdata = await res.json()
         return resdata
       }
@@ -401,7 +401,7 @@ export default {
 
     async getBrandList() {
       try {
-        const res = await fetch(this.url + "/Brand",{mode: "no-cors"}) //,{mode: "no-cors"})
+        const res = await fetch(this.url + "/Brand") //,{mode: "no-cors"})
         const resbrandlist = await res.json()
         return resbrandlist
         
@@ -413,7 +413,7 @@ export default {
 
     async getColorList() {
       try {
-        const res = await fetch(this.url + "/Color" ,{mode: "no-cors"})
+        const res = await fetch(this.url + "/Color" )
         const rescolorlist = await res.json()
         return rescolorlist
       }
@@ -427,7 +427,7 @@ export default {
       try {
         await fetch(`${this.url} + "/Product/delete/{product_id}"/${deleteForm}`, {
           method: 'DELETE'
-        },{mode: "no-cors"})
+        })
         this.formResults = this.formResults.filter(form => form.id !== deleteForm)
       }
       catch (error) {
@@ -480,7 +480,7 @@ export default {
           method: 'PUT',
 
           body: formData
-        },{mode: "no-cors"})
+        })
         const resdata = await res.json()
         this.formResults = this.formResults.map(formResults => formResults.id === afterForm.id
           ? { ...formResults, data: resdata.data } : formResults)
