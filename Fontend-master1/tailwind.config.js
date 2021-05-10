@@ -6,7 +6,8 @@ module.exports = {
       colors:{
         silver: '#C0C0C0',
         aquamarine: '#7FFFD4',
-        lightpink: '#FFB6C1'
+        lightpink: '#FFB6C1',
+        jetblack: '#343434'
         
         }
     },

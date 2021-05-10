@@ -1,7 +1,5 @@
 package sit.int204.practice.models;
-
 import java.util.List;
-
 
 
 import javax.persistence.Column;

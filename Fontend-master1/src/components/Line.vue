@@ -1,5 +1,5 @@
 <template>
-    <div class="text-lg flex justify-center">
+    <div class="text-lg flex md:flex-1 justify-center md:justify-items-center">
         ______________________________________________________________________________________________________________________________________________________________
     </div>    
 </template>

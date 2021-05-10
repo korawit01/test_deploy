@@ -1,5 +1,6 @@
 package sit.int204.practice.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
@@ -15,17 +16,26 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.RequestPart;
+
 import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 import sit.int204.practice.models.Product;
 import sit.int204.practice.repositories.ProductRepository;
 import sit.int204.service.FileUploadUtil;
 
+
 import java.io.IOException;
+
 import java.util.List;
+
+
 
 
 import org.springframework.http.MediaType;
@@ -39,17 +49,25 @@ public class ProductController {
 	
 	 @GetMapping("/Product/{product_id}")
 	    public Product showProduct(@PathVariable long product_id) {
+		 try {
 	        return productrepository.findById(product_id).orElse(null);
+	        } catch (Exception e) {
+	        	return null;
+			}
 	    }
 	 
 
 	  @RequestMapping(value = "/Product/image/{product_id}/{path}", method = RequestMethod.GET,produces = {MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE})
 	  
 	    public ResponseEntity<InputStreamResource> getImage(@PathVariable String path,@PathVariable long product_id) throws IOException {
+		  try {
 	        var imgFile = new ClassPathResource("/image/" + product_id + "/" + path);
 	        return  ResponseEntity
 	                .ok()
-	                .body(new InputStreamResource(imgFile.getInputStream()));
+	                .body(new InputStreamResource(imgFile.getInputStream()));}
+		  catch (Exception e) {
+			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
 	    }
 	  
 	 @GetMapping("/Product")
@@ -76,25 +94,27 @@ public class ProductController {
 		 return ResponseEntity.ok(updateid);	    
 	 }
 	 
-	 @PostMapping("/Product")
-	  public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-		 Product _product = productrepository.save(product);
-		 return new ResponseEntity<>(_product, HttpStatus.CREATED);
-	    
-	  }
+//	 @PostMapping("/Product")
+//	  public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+//		 Product _product = productrepository.save(product);
+//		 return new ResponseEntity<>(_product, HttpStatus.CREATED);
+//	    
+//	  }
 	 	
-	 @PostMapping(value = "/Product/multi", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+	 @PostMapping(value = "/Product/multi"
+//			 , consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+			 )
 	    public ResponseEntity<Product> saveUser(
-	    		@RequestParam(value = "file")MultipartFile file,
-	            @RequestPart Product product) throws IOException {
+	    		@RequestPart(value = "file",required=false)MultipartFile file,
+	            @RequestPart(value = "product") String product_
+	    		) throws IOException {
+		 	ObjectMapper map = new ObjectMapper();
+		 	Product prod = map.readValue(product_, Product.class);
 	        String fileName = file.getOriginalFilename();
-	        product.setPath(fileName);
-	        Product savedUser = productrepository.save(product);
-	        
-	        String uploadDir = "src/main/resources/image/" + savedUser.getProduct_id();
-	        
-	        FileUploadUtil.saveFile(uploadDir, fileName, file);    
-	        return new ResponseEntity<>(savedUser,HttpStatus.OK);
+	        Product savedProd = productrepository.save(prod);  
+	        String uploadDir = "src/main/resources/image/" + savedProd.getProduct_id();    
+	        FileUploadUtil.saveFile(uploadDir, fileName, file); 
+	        return new ResponseEntity<>(savedProd, HttpStatus.CREATED);
 
 	    }
 	 

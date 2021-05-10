@@ -2,10 +2,13 @@ package sit.int204.service;
 import java.io.*;
 import java.nio.file.*;
 
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileUploadUtil {
-	 public static void saveFile(String uploadDir, String fileName,
+	 public static void saveFile(
+			 String uploadDir, 
+			 String fileName,
 	            MultipartFile multipartFile) throws IOException {
 	        Path uploadPath = Paths.get(uploadDir);
 	         
@@ -16,8 +19,8 @@ public class FileUploadUtil {
 	        try (InputStream inputStream = multipartFile.getInputStream()) {
 	            Path filePath = uploadPath.resolve(fileName);
 	            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-	        } catch (IOException ioe) {        
-	            throw new IOException("Could not save image file: " + fileName, ioe);
+	        } catch (IOException e) {        
+	            throw new IOException("Could not save image file: " + fileName, e);
 	        }      
 	    }
 	 
