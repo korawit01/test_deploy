@@ -18,7 +18,7 @@ import sit.int204.practice.models.Pratice;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://52.253.91.116:80"})
+@CrossOrigin(origins = {"http://52.253.91.116"})
 @RestController
 public class PraticeController {
 	 @Autowired
