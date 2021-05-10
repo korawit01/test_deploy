@@ -225,7 +225,7 @@ export default {
       i: 'https://files.catbox.moe/vq3v5e.png',
       editForm: false,
       editFormId: '',
-      url: ${process.env.VUE_APP_ROOT_API}
+      url: `${process.env.VUE_APP_ROOT_API}`
       //url: 'http://localhost:4000/formResults'
     }
   },
