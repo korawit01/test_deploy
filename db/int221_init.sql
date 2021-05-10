@@ -15,9 +15,9 @@ USE `mydb` ;
 -- -----------------------------------------------------
 -- Table `mydb`.`Brand`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Brand` ;
+DROP TABLE IF EXISTS `mydb`.`brand` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Brand` (
+CREATE TABLE IF NOT EXISTS `mydb`.`brand` (
   `Brand_Id` INT NOT NULL,
   `Brand_name` VARCHAR(1000) NOT NULL,
   PRIMARY KEY (`Brand_Id`))
@@ -27,9 +27,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Product`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Product` ;
+DROP TABLE IF EXISTS `mydb`.`product` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Product` (
+CREATE TABLE IF NOT EXISTS `mydb`.`product` (
   `Product_Id` INT NOT NULL AUTO_INCREMENT,
   `Product_Name` VARCHAR(1000) NOT NULL,
   `Description` VARCHAR(1000) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Product` (
   INDEX `fk_Product_Brand1_idx` (`Brand_Brand_Id` ASC) VISIBLE,
   CONSTRAINT `fk_Product_Brand1`
     FOREIGN KEY (`Brand_Brand_Id`)
-    REFERENCES `mydb`.`Brand` (`Brand_Id`)
+    REFERENCES `mydb`.`brand` (`Brand_Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -50,9 +50,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Color`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Color` ;
+DROP TABLE IF EXISTS `mydb`.`color` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Color` (
+CREATE TABLE IF NOT EXISTS `mydb`.`color` (
   `Color_Id` INT NOT NULL,
   `Color_Name` VARCHAR(1000) NOT NULL,
   PRIMARY KEY (`Color_Id`))
@@ -62,9 +62,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Have`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Have` ;
+DROP TABLE IF EXISTS `mydb`.`have` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Have` (
+CREATE TABLE IF NOT EXISTS `mydb`.`have` (
   `Product_Product_Id` INT NOT NULL,
   `Color_Color_Id` INT NOT NULL,
   PRIMARY KEY (`Product_Product_Id`, `Color_Color_Id`),
@@ -72,12 +72,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Have` (
   INDEX `fk_Product_has_Color_Product_idx` (`Product_Product_Id` ASC) VISIBLE,
   CONSTRAINT `fk_Product_has_Color_Product`
     FOREIGN KEY (`Product_Product_Id`)
-    REFERENCES `mydb`.`Product` (`Product_Id`)
+    REFERENCES `mydb`.`product` (`Product_Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Product_has_Color_Color1`
     FOREIGN KEY (`Color_Color_Id`)
-    REFERENCES `mydb`.`Color` (`Color_Id`)
+    REFERENCES `mydb`.`color` (`Color_Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
