@@ -19,7 +19,7 @@ services:
   backend:
     container_name: backend
     build: 
-      context: ./backend-test
+      context: ./Backend-test
     image: devops_backend
     ports:
       - "8081:8081"
@@ -28,7 +28,7 @@ services:
   fontend:
     container_name: fontend
     build:
-      context: ./fontend-master
+      context: ./Fontend-master
     image: devops_fontend
     ports:
       - "80:80"
