@@ -1,12 +1,8 @@
 package sit.int204.practice.models;
 
 import java.util.List;
-
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +29,7 @@ public class Product {
 	private String Desc;
 	
 	@Column (name = "Price")
-	private int Price;
+	private double Price;
 	
 	@Column (name = "Date")
 	private String Date;
@@ -57,7 +53,7 @@ public class Product {
 		
 	}
 	
-	public Product(Long product_id, String names, String description, int price, String date, String path) {
+	public Product(Long product_id, String names, String description, double price, String date, String path) {
 		this.Product_id = product_id;
 		this.name = names;
 		this.Desc = description;
@@ -90,11 +86,11 @@ public class Product {
 		Desc = description;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return Price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		Price = price;
 	}
 
