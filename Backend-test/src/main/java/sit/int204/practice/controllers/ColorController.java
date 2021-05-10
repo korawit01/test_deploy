@@ -10,7 +10,7 @@ import sit.int204.practice.repositories.ColorRepository;
 import sit.int204.practice.models.Color;
 
 import java.util.List;
-@CrossOrigin(origins = {"http://52.253.91.116","http://porrewoum.me/"})
+@CrossOrigin(origins = {"http://52.253.91.116","http://porrewoum.me"})
 @RestController
 public class ColorController {
 	@Autowired
