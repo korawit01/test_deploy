@@ -16,3 +16,8 @@ services:
       - "./db/int221_grant.sql:/docker-entrypoint-initdb.d/2.sql"
       - "./db/int221_insert.sql:/docker-entrypoint-initdb.d/3.sql"
       - "./db/my.cnf:/etc/mysql/my.cnf"
+
+networks:
+  default:
+    external:
+      name: project-network
