@@ -40,7 +40,7 @@ import java.util.List;
 
 import org.springframework.http.MediaType;
 
-@CrossOrigin(origins = {"http://localhost:8080"})
+@CrossOrigin(origins = {"http://52.253.91.116:8080"})
 @RestController
 public class ProductController {
 	@Autowired

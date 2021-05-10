@@ -10,7 +10,7 @@ import sit.int204.practice.repositories.BrandRepository;
 import sit.int204.practice.models.Brand;
 
 import java.util.List;
-@CrossOrigin(origins = {"http://localhost:8080"})
+@CrossOrigin(origins = {"http://52.253.91.116:8080"})
 @RestController
 public class BrandController {
 	@Autowired
