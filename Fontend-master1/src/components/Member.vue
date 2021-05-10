@@ -18,7 +18,7 @@
                 <br>
                 : 62130500006
                 <br>
-                : DevOps, Network
+                : DevOps, Network, Database
             </p>            
             
             
@@ -27,7 +27,7 @@
                 <br>
                 : 62130500030
                 <br>
-                : DevOps, Back-End
+                : Back-End
             </p>
             
         </div>     
